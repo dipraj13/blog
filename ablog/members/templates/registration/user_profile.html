@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{%load static%}
+{%block title%}User Profile{%endblock%}
+{%block content%}
+<br/>
+<h1>User Profile</h1>
+<br/>
+
+<div class="card" style="width: 40rem;">
+  {% if page_user.profile_pic%}
+        <img src="{{page_user.profile_pic.url}}" class="img-fluid rounded-start" alt="...">
+    {%else%}
+        <img src="{% static "myblog/images/default.jpg" %}" class="img-fluid rounded-start" alt="...">
+    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{page_user.user.first_name}}{{" "}}{{page_user.user.last_name}}</h5>
+    <p class="card-text">{{page_user.bio}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    {%if page_user.twitter_url %}
+    <li class="list-group-item"><a href="{{page_user.twitter_url}}">Twitter </a></li>
+    {%else%}
+    <li class="list-group-item">No Twitter</li>
+    {%endif%}
+    {% if page_user.facebook_url %}
+    <li class="list-group-item"><a href="{{page_user.facebook_url}}"> Facebook </a></li>
+    {%else%}
+    <li class="list-group-item">No Facebook</li>
+    {%endif%}
+    {%if page_user.instagram_url%}
+    <li class="list-group-item"><a href="{{page_user.instagram_url}}">Instagram </a></li>
+    {%else%}
+    <li class="list-group-item">No Instagram</li>
+    {%endif%}
+  </ul>
+  <div class="card-body">
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--
+<div class="card mb-3" >
+    <div class="row g-0">
+      <div class="col-md-2">
+    {% if page_user.profile_pic%}
+        <img src="{{page_user.profile_pic.url}}" class="img-fluid rounded-start" alt="...">
+    {%else%}
+        <img src="{% static "myblog/images/default.jpg" %}" class="img-fluid rounded-start" alt="...">
+    {% endif %}
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{page_user.user.first_name}}{{" "}}{{page_user.user.last_name}}</h5>
+          <p class="small text-muted">
+            <a href="{% url 'show_profile' page_user.id %}">Profile </a>|
+            {% if page_user.facebook_url %} 
+            <a href="{{page_user.facebook_url}}"> Facebook </a>|
+            {%endif%}
+            {%if page_user.twitter_url %}
+            <a href="{{page_user.twitter_url}}">Twitter </a>|
+            {% endif%}
+            {%if page_user.instagram_url%}
+            <a href="{{page_user.instagram_url}}">Instagram </a>
+            {%endif%}
+          </p>
+          <p class="card-text">{{page_user.bio}}</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+{% endblock %}
